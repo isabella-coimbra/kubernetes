@@ -26,3 +26,6 @@ kubectl exec -it first-pod-declarative -- bash
 
 # The minikube dashboard command, which opens a new tab in our web browser, displaying the Kubernetes Dashboard:
 minikube dashboard 
+
+# Internal IP
+kubectl get nodes -o wide
