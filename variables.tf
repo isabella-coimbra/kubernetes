@@ -1,7 +1,6 @@
 variable project {
   description = "The name of project."
   type        = string
-  default     = "gglobo-storm-prod"
 }
 
 variable region {
