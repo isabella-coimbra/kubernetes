@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata:
+  name: replicaset
+spec:
+  template: 
+    metadata:
+      name: pod-nginx
+      labels:
+        app: first-pod
+    spec:
+      containers:
+        - name: container-pod-nginx
+          image: nginx:latest
+          ports:
+            - containerPort: 80
+          envFrom:
+            - configMapRef:
+                name: db-configmap
+  replicas: 2
+  selector:
+    matchLabels: 
+      app: first-pod
+

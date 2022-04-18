@@ -29,3 +29,9 @@ minikube dashboard
 
 # Internal IP
 kubectl get nodes -o wide
+
+# Replicaset pods
+kubectl get replicasets
+
+# Deployments
+kubectl get deployments

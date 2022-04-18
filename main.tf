@@ -1,8 +1,3 @@
-provider "google" {
-  project = var.project
-  region  = var.region
-}
-
 resource "google_service_account" "default" {
   account_id   = "service-account-id-cluster"
   display_name = "User for ${var.cluster_name}"
