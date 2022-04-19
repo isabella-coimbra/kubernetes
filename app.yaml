@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cluster-test
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: hello
+  template:
+    metadata:
+      labels:
+        app: hello
+    spec:
+      containers:
+      - name: hello-app
+        image: gcr.io/project/app
+        # This app listens on port 8888 for web traffic by default.
+        ports:
+        - containerPort: 8888
+        env:
+          - name: PORT
+            value: "8888"

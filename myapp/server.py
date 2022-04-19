@@ -3,7 +3,10 @@ import tornado.web
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self):
-        self.write("Hello, world")
+        title = "Hello, world"
+        bgcolor = "darkred"
+        self.render("template.hmtl", title=title, bgcolor=bgcolor)
+        print(self.request)
 
 def make_app():
     return tornado.web.Application([

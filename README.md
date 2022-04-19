@@ -22,8 +22,14 @@ Google Container Registry provides secure, private Docker image storage on Googl
 
 For enable Container Registry API the link of documentaion: https://console.developers.google.com/apis/api/containerregistry.googleapis.com/overview
 
+## Enable Kubernetes Engine API
+
+Builds and manages container-based applications.
+
+For enable Kubernetes Engine API the link of documentaion: https://cloud.google.com/kubernetes-engine/docs/reference/rest
+
 ## Terraform
-In the folder to the repositorie we need to run the command:
+In the folder to the repositorie we need to run the command: 
 
 ``` ssh
 terraform init
@@ -52,7 +58,13 @@ show terraform
 |Name|Description|Type|Default|Optional|
 |:-:|:-:|:-:|:-:|:-:|
 |project|The name of project|string|--|No|
-|region|Region of the instance|string|us-east-1|Yes|
+|region|Region of the instance|string|--|No|
+|cluster_name|The name of GKE cluster|string|cluster-dev|Yes|
+|location|The location (region or zone) in which the cluster master will be createstring|string|--|No|
+|initial_node_count|The number of nodes to create in this cluster|number|3|Yes|
+|pool_name|The name of pool|string|pool-dev|Yes|
+|node_count|The number of nodes|number|1|Yes| 
+|machine_type|The type fo machine|string|e2-small|Yes
 
 ## Build Docker Image to Container Registry
 
@@ -61,4 +73,34 @@ For build the Docker image and push it to the project’s container registry, ex
 ``` ssh
 $ docker build -t docker push gcr.io/<project_name>/app  .
 $ docker push docker push gcr.io/<project_name>/app 
+```
+
+## Deploy an application
+
+Deploy the resource to the cluster: 
+
+``` ssh
+$ kubectl apply -f app.yaml
+```
+
+View a deployed application:
+
+``` ssh
+$ curl EXTERNAL_IP
+```
+
+## Create a pod to nginx
+
+Port foward allows using resource name, such as a pod name, to select a matching pod to port forward to.
+
+``` ssh
+$ kubectl apply -f nginx.yaml
+$ kubectl port-foward nginx 8080:80
+```
+
+# Create a service
+
+``` ssh
+$ kubectl apply -f service-nginx.yaml
+$ kubectl apply -f app-service.yaml
 ```
