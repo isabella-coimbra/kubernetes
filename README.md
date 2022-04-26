@@ -8,6 +8,8 @@ Project to use Kubernetes in many different platforms.
 - [Minikube](https://minikube.sigs.k8s.io/docs/start/)
 - [Kubectl](https://kubernetes.io/docs/tasks/tools/install-kubectl-macos/)
 - [Terraform](https://www.terraform.io/downloads)
+- [Helm](https://github.com/helm/helm/releases/tag/v3.8.2)
+- [Elasticsearch](https://artifacthub.io/packages/helm/elastic/elasticsearch)
 - An account in GCP.
 
 ## Enable Cloud Run API
@@ -98,9 +100,22 @@ $ kubectl apply -f nginx.yaml
 $ kubectl port-foward nginx 8080:80
 ```
 
-# Create a service
+## Create a service
 
 ``` ssh
 $ kubectl apply -f service-nginx.yaml
 $ kubectl apply -f app-service.yaml
+```
+
+## Create keys for service-accounts
+
+``` ssh
+$ gcloud iam service-accounts keys create ./sqlproxy.json --iam-account <service_account>
+```
+
+## Create a load balancer and persistent volume claim
+
+``` ssh
+$ kubectl apply -f app-svc-lb.yaml
+$ kubectl apply -f app-pvc.yaml
 ```
